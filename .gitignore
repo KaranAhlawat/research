@@ -5,3 +5,5 @@ data/
 kernel.json
 .dir-locals.el
 *.zip
+.tool-versions
+yolo_model

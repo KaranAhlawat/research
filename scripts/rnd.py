@@ -1,14 +1,11 @@
 import random
 from pathlib import Path
 import shutil
-import numpy as np
 
 
 def main() -> None:
-    image_names: list[str] = []
-
     image_dir = Path("./data/India")
-    narrow_image_list = list(image_dir.iterdir())[5001:7001]
+    narrow_image_list = list(image_dir.iterdir())[3001:5001]
 
     rnd_lst = random.sample(narrow_image_list, 100)
 

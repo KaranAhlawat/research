@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "ml"
 description = ""
-authors = ["Karan Ahlawat", "Raghav Kapoor"]
+authors = ["Karan Ahlawat <ahlawatkaran12@gmail.com>"]
 version = "1.0.0"
 
 [tool.poetry.dependencies]
