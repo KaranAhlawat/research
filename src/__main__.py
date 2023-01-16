@@ -1,8 +1,6 @@
-from glob import glob
 import logging
 import os
 import re
-from shutil import copy
 from typing import Optional
 from setup import setup
 from keras_preprocessing.image import ImageDataGenerator
@@ -60,7 +58,7 @@ def main() -> None:
         validation_split=0.2,
     )
 
-    img_data = data.ImageData(datagen, "./data/US")
+    img_data = data.ImageData(datagen, "./data/final_data")
     local_logger.info("Data loaded.")
 
     # Load the model from a file if it exists or train it
@@ -75,29 +73,15 @@ def main() -> None:
         cnn = model.NeuralNet(network=network)
 
     # Save the model for good meausure
-    cnn.network.save("cnn_v1.h5")
+    cnn.network.save("cnn_anomaly.h5")
 
     local_logger.info(
         "Normal image predication: %s", cnn.pred_image("./data/test/normal.jpg")
     )
 
     local_logger.info(
-        "Pothole image prediction: %s", cnn.pred_image("./data/test/pothole.jpeg")
+        "Pothole image prediction: %s", cnn.pred_image("./data/test/negative.jpg")
     )
-
-    # Classify all images in the India dataset
-    paths = glob("./data/India/*.jpg")
-
-    local_logger.info("Found %d images in the India dataset", len(paths))
-
-    for path in paths:
-        prediction = cnn.pred_image(path)
-
-        if prediction == "pothole":
-            copy(path, "./data/India/Pothole/")
-        else:
-            copy(path, "./data/India/Normal/")
-
 
 if __name__ == "__main__":
     main()

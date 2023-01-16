@@ -65,4 +65,4 @@ class NeuralNet:
 
         result = self.network(img)
 
-        return "pothole" if result[0][0] == 1 else "normal"
+        return "anomaly" if result[0][0] == 1 else "normal"
